@@ -1,0 +1,17 @@
+{
+  "name": "@ahmadnazir/bolt",
+  "version": "0.0.1",
+  "description": "Run penneo services without any hassle",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "up": "./up",
+    "down": "./down"
+  },
+  "author": "Ahmad Nazir Raja",
+  "license": "MIT",
+  "dependencies": {
+    "shelljs": "^0.7.7",
+    "yesno": "0.0.1"
+  }
+}
