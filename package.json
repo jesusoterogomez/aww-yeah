@@ -1,12 +1,12 @@
 {
-  "name": "@ahmadnazir/bolt",
+  "name": "awwyeah",
   "version": "0.0.1",
   "description": "Run penneo services without any hassle",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "up": "./up",
-    "down": "./down"
+    "yeah": "./bin/up.sh",
+    "down": "./bin/down.sh"
   },
   "author": "Ahmad Nazir Raja",
   "license": "MIT",
