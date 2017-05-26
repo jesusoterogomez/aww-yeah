@@ -6,9 +6,9 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $SCRIPT_DIR;
 
-source ./../scripts/text.sh
+source ./../utils/text.sh
 
-IP=`./docker-ip.sh`
+IP=`./dockerip.sh`
 DOMAIN=dev.penneo.com
 
 h1 "DNS : Update local host to recognize domain name: $DOMAIN"
