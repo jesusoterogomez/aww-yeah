@@ -6,9 +6,5 @@ var config  = require(homeDir + '/.awwyeah.json');
 var urls    = require('./urls');
 var shelljs = require('shelljs');
 
-// Clone repos
-for (var name in urls) {
-  var command = 'git clone --recursive ' + urls[name] + ' ' + config.dir + '/' + name;
-  // console.log(command);
-  shelljs.exec(command);
-}
+var command = 'scripts/run.sh ' + config.dir + ' stop';
+shelljs.exec(command);

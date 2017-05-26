@@ -4,56 +4,48 @@
 # Run services
 # ------------
 
-b=$(tput bold)
-n=$(tput sgr0)
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $SCRIPT_DIR;
+source ./text.sh
+
+# @fixme: update the description based on the $COMMAND and the $SERVICE if selected
+h1 "SERVICES : Running penneo services"
+h2 "Starting / Stopping one or more services"
 
 DIR=$1
 COMMAND=$2
 
-# Gateway
-echo
-echo "${b}Gateway: ${n}"
+h3 Gateway:
 cd $DIR/gateway-service;
 ./project-runner/run.sh dev $COMMAND;
 
-# Frontend
-echo
-echo "${b}Frontend: ${n}"
+h3 Frontend:
 cd $DIR/fe-application-loader;
 # ./project-runner/run.sh dev $COMMAND;
 
 # Seems like I have to run npm build and exports again (just tried and it seems to be working..)
 
-# Auth
-echo
-echo "${b}Auth Service: ${n}"
+h3 Auth Service:
 cd $DIR/api-auth;
 ./project-runner/run.sh dev $COMMAND;
 
-# Sign
-echo
-echo "${b}Signing Service: ${n}"
+h3 Signing Service:
 cd $DIR/Symfony2;
 ./project-runner/run.sh dev $COMMAND;
 
-echo
-echo "${b}Forms / Workflow service: ${n}"
+h3 Forms / Workflow service:
 cd $DIR/forms;
 ./project-runner/run.sh dev $COMMAND;
 
-echo
-echo "${b}Pdf / Eid service: ${n}"
+h3 Pdf / Eid service:
 cd $DIR/pdf-eid;
 ./project-runner/run.sh dev $COMMAND;
 
-echo
-echo "${b}Validator service: ${n}"
+h3 Validator service:
 cd $DIR/validator;
 ./scripts/run.sh dev $COMMAND;
 
-# Sepior Service
-echo
-echo "${b}Sepior Service: ${n}"
+h3 Sepior Service:
 cd $DIR/SepiorService;
 ./project-runner/run.sh dev $COMMAND;
 
@@ -63,5 +55,5 @@ cd $DIR/SepiorService;
 
 # run the proxy so that the eid service can talk to NemId preprod environment when validating signatures
 
-# echo "${b}Creating tunnel to get access to NemID pre-production environment: ${n}"
+# h3 Creating tunnel to get access to NemID pre-production environment:
 # ssh -D 172.17.42.1:50050 sign-sandbox #penneo_tunnel_nemid[sandbox]

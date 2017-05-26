@@ -3,7 +3,7 @@
 
 
 var homeDir = require('os').homedir();
-var config  = require(homeDir + '/.bolt.json');
+var config  = require(homeDir + '/.awwyeah.json');
 var urls    = require('./urls');
 var shelljs = require('shelljs');
 var yesno   = require('yesno');

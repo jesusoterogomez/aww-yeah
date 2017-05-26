@@ -1,5 +1,5 @@
 var homeDir  = require('os').homedir();
-var config   = require(homeDir + '/.bolt.json');
+var config   = require(homeDir + '/.awwyeah.json');
 var services = require('./services');
 
 var username = config.github.username;
