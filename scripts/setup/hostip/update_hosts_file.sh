@@ -6,7 +6,7 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $SCRIPT_DIR;
 
-source ./../utils/text.sh
+source ./../lib/text.sh
 
 IP=`./dockerip.sh`
 DOMAIN=dev.penneo.com

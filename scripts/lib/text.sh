@@ -2,6 +2,7 @@ heading1=$(tput bold)$(tput setaf 4)
 heading2=$(tput setaf 4)
 heading3=$(tput bold)
 notice=$(tput setaf 3)
+error=$(tput bold)$(tput setaf 1)
 n=$(tput sgr0)
 
 function h1()
@@ -29,5 +30,12 @@ function notice()
 {
     echo
     echo "$notice !!! $1 !!! $n"
+    echo
+}
+
+function error()
+{
+    echo
+    echo "$error!!! $1 !!! $n"
     echo
 }

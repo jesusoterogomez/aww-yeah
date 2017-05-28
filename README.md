@@ -1,4 +1,6 @@
-# Setup
+# Aww Yeah!
+
+## Setup ##
 
 - Run the setup script
 ```
@@ -10,5 +12,5 @@
 - Spin up the services:
 
 ```
-aww yeah
+aww yeah!
 ```

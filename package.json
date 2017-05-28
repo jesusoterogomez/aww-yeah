@@ -5,12 +5,18 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "yeah": "./bin/up.js",
-    "down": "./bin/down.js"
+    "yeah": "./scripts/tasks/service.sh all",
+    "yeah!": "npm run yeah",
+    "no": "./scripts/tasks/down.js",
+    "no!": "npm run no",
+    "service": "./scripts/tasks/service.sh",
+    "list": "./scripts/tasks/list.js"
   },
   "author": "Ahmad Nazir Raja",
   "license": "MIT",
   "dependencies": {
+    "optimist": "^0.6.1",
+    "prettyjson": "^1.2.1",
     "shelljs": "^0.7.7",
     "yesno": "0.0.1"
   }
