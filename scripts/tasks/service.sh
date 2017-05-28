@@ -12,4 +12,11 @@ source ./../lib/text.sh
 h1 "SERVICES : Running penneo services"
 h2 "Starting / Stopping one or more services"
 
+# if [ -z $DIR ]; then
+
+if [ -z $1 ]; then
+  error "No service specified. Use 'all' for starting/stopping all services."
+  exit -1;
+fi
+
 ./service.js $@
