@@ -10,14 +10,18 @@
     "no": "./scripts/tasks/down.js",
     "no!": "npm run no",
     "service": "./scripts/tasks/service.sh",
-    "list": "./scripts/tasks/list.js"
+    "list": "./scripts/tasks/list.js",
+    "auth": "./scripts/tasks/auth.js"
   },
   "author": "Ahmad Nazir Raja",
   "license": "MIT",
   "dependencies": {
     "optimist": "^0.6.1",
+    "penneo-js-sdk": "^0.1.13",
     "prettyjson": "^1.2.1",
+    "prompt": "^1.0.0",
     "shelljs": "^0.7.7",
+    "write": "^0.3.3",
     "yesno": "0.0.1"
   }
 }
