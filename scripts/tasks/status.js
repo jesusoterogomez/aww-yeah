@@ -16,7 +16,7 @@ var serviceId = args._[0];
 
 // @todo: move this to a common place. lib/services.js ?
 if (serviceId && !services[serviceId]) {
-  console.log("Service '" + serviceId + "' doesn't exist! Configured services are: " + Object.keys(services) + "\n");
+  console.log("Service '%s' doesn't exist! Configured services are: %s\n", serviceId, Object.keys(services));
   process.exit(0);
 }
 
@@ -31,7 +31,9 @@ for (var id in services) {
   if (!silent) {
     console.log(colors.gray(exec.stdout));
   }
-  var paddedId = (pad + id).slice(-pad.length);
-  console.log(paddedId + ":\t" + (exec.code === 0 ? colors.green("\u2713") : colors.red("\u2718")));
+  console.log('%s :\t %s',
+              (pad + id).slice(-pad.length), // padded service id
+              (exec.code === 0 ? colors.green('\u2713') : colors.red('\u2718'))
+             );
 }
 console.log();
