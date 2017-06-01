@@ -8,11 +8,13 @@
     "no": "./scripts/tasks/down.js",
     "service": "./scripts/tasks/service.sh",
     "list": "./scripts/tasks/list.js",
-    "auth": "./scripts/tasks/auth.js"
+    "auth": "./scripts/tasks/auth.js",
+    "status": "./scripts/tasks/status.js"
   },
   "author": "Ahmad Nazir Raja",
   "license": "MIT",
   "dependencies": {
+    "colors": "^1.1.2",
     "optimist": "^0.6.1",
     "penneo-js-sdk": "^0.1.13",
     "prettyjson": "^1.2.1",
