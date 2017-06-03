@@ -1,4 +1,4 @@
-#!/usr/local/bin/node
+#!/usr/bin/node
 // -*- mode: js -*-
 
 var homeDir  = require('os').homedir();
