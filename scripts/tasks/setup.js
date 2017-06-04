@@ -1,7 +1,7 @@
 #!/usr/bin/node
 // -*- mode: js -*-
 
-var config = ('../lib/config')
+var config  = require('./../lib/config');
 var colors  = require('colors');
 
 console.log(
@@ -16,3 +16,34 @@ console.log(
         + "NOTE: of course all mentioned steps should work on a mac as well\n".yellow
 );
 
+
+function updateHostsFile() {
+    return console.log("Not implemented".red);
+}
+function notImplemented(name) {
+    console.log("Not implemented: %s".red, name);
+}
+
+var steps = config.get().setup;
+for(var name in steps) {
+    if (steps[name] === false) {
+        console.log("%s is already setup", name.blue);
+        continue;
+    }
+    switch (name) {
+    case "update-hosts-file":
+        notImplemented(name);
+        break;
+    case "vpn-info":
+        notImplemented(name);
+        break;
+    case "clone-projects":
+        notImplemented(name);
+        break;
+    case "bootstrap":
+        notImplemented(name);
+        break;
+    default:
+        console.log("Don't know how to setup %s".red, name);
+    }
+}
