@@ -10,4 +10,4 @@ var options = {
   noColor: false
 };
 
-console.log(prettyJson.render(services, options));
+console.log(prettyJson.render(services.getDefined(), options));

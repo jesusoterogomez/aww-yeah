@@ -4,9 +4,9 @@
   "description": "Run penneo services without any hassle",
   "main": "main.js",
   "scripts": {
-    "yeah": "./scripts/tasks/service.sh all",
+    "yeah": "./scripts/tasks/service.js all",
     "no": "./scripts/tasks/down.js",
-    "service": "./scripts/tasks/service.sh",
+    "service": "./scripts/tasks/service.js",
     "list": "./scripts/tasks/list.js",
     "auth": "./scripts/tasks/auth.js",
     "status": "./scripts/tasks/status.js"
