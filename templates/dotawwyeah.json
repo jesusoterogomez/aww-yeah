@@ -2,5 +2,29 @@
     "dir": "{{dir}}",
     "github": {
         "username": "{{github.username}}"
+    },
+    "services": {
+        "gateway": true,
+        "sign": true,
+        "auth": true,
+        "frontend": false,
+        "form": false,
+        "pdf-eid": false,
+        "validator": false,
+        "sepior": false
+    },
+    "setup": {
+        "update-hosts-file": false,
+        "vpn": false,
+        "clone-projects": {
+            "gateway": false,
+            "sign": false,
+            "auth": false
+        },
+        "bootstrap": {
+            "gateway": false,
+            "sign": false,
+            "auth": false
+        }
     }
 }

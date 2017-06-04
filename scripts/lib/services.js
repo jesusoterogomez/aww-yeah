@@ -18,7 +18,11 @@ let dockerCommand = {
 
 function getDefined() {
     var all = {};
-    for (var id in definitions) {
+    for (var id in config.services) {
+        // Filter out disabled services
+        if (!config.services[id]) {
+            continue;
+        }
         var definition = definitions[id];
         var url = // (ssh ? 'git@github.com:' : 'https://github.com/')
                 'git@github.com:'
@@ -83,7 +87,6 @@ function exec(id, command) {
 }
 
 function displayInfo(id) {
-    console.log('');
     console.log(prettyJson.render(get(id)));
     console.log('');
 }
