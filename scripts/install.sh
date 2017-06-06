@@ -10,4 +10,4 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # 4. install packer
 
 
-ln -s $SCRIPT_DIR/aww.sh /usr/local/bin/aww
+ln -sf $SCRIPT_DIR/aww.sh /usr/local/bin/aww

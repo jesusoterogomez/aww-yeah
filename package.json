@@ -11,7 +11,8 @@
     "service": "scripts/tasks/service.js",
     "list": "scripts/tasks/list.js",
     "auth": "scripts/tasks/auth.js",
-    "status": "scripts/tasks/status.js"
+    "status": "scripts/tasks/status.js",
+    "env": "scripts/tasks/env.js"
   },
   "author": "Ahmad Nazir Raja",
   "license": "MIT",

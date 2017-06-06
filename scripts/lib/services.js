@@ -1,9 +1,10 @@
-var homeDir     = require('os').homedir();
-var config      = require(homeDir + '/.awwyeah.json');
-var definitions = require('./../../service-definitions');
-var shelljs     = require('shelljs');
-var prettyJson  = require('prettyjson');
-var colors      = require('colors');
+var homeDir      = require('os').homedir();
+var config       = require(homeDir + '/.awwyeah.json');
+var definitions  = require('./../../service-definitions');
+var shelljs      = require('shelljs');
+var childProcess = require('child_process'); // replace shelljs?
+var prettyJson   = require('prettyjson');
+var colors       = require('colors');
 
 var username = config.github.username;
 var ssh      = config.github.ssh;
@@ -13,7 +14,8 @@ let dockerCommand = {
     up: 'project-runner/run.sh dev',
     start: 'project-runner/run.sh dev start',
     stop: 'project-runner/run.sh dev stop',
-    isRunning: 'docker ps | grep {service-id}'
+    isRunning: 'docker ps | grep {service-id}',
+    env: 'project-runner/login.sh dev'
 };
 
 function getDefined() {
@@ -49,7 +51,7 @@ function validate(id) {
         process.exit(0);
     }
 
-    return;
+    return service;
 }
 
 function get(id) {
@@ -72,6 +74,14 @@ function exec(id, command) {
         break;
     case 'stop':
         cmd = service.path + "/" + dockerCommand.stop;
+        break;
+    case 'env':
+        cmd = service.path + "/" + dockerCommand.env;
+        var parts = cmd.split(' ');
+        var command = parts.shift();
+        var args = parts;
+        childProcess.spawn(command, args, {stdio: 'inherit'});
+        return;
         break;
     case '':
         console.log('What do I do with this service? Please specify a command'.yellow);
