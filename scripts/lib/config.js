@@ -60,7 +60,7 @@ function _copyFile(source, target) {
 function save(config) {
     // Backup
     if (fs.existsSync(file)) {
-        console.log('Backing up previously configured configuration file %s to %s', file.blue, backupFile.blue);
+        console.log('Backing up previously configured configuration file %s to %s'.gray, file, backupFile);
         _copyFile(file, backupFile);
     }
 
@@ -72,7 +72,7 @@ function save(config) {
         console.log(err);
         return false;
     }
-    console.log("Configuration file updated: %s\n", file.blue);
+    console.log("Configuration file updated: %s\n".gray, file);
     return true;
 }
 
