@@ -3,6 +3,8 @@
 
 var config  = require('./../lib/config');
 var colors  = require('colors');
+var path    = require('path');
+var shelljs = require('shelljs');
 
 console.log(
     "This is not implemented yet. Here are the things that this script should handle:\n".yellow
@@ -18,21 +20,33 @@ console.log(
 
 
 function updateHostsFile() {
-    return console.log("Not implemented".red);
+    var cmd = path.join(__dirname, '/../setup/hostip/update_hosts_file.sh');
+    var exec = shelljs.exec(cmd, {silent: false});
+
+    // console.log(colors.gray(exec.stdout) || colors.red(exec.stderr));
+    return exec.code === 0;
 }
+
 function notImplemented(name) {
     console.log("Not implemented: %s".red, name);
 }
 
-var steps = config.get().setup;
+var cfg = config.get();
+var steps = cfg.setup;
 for(var name in steps) {
     if (steps[name] === false) {
-        console.log("%s is already setup", name.blue);
+        console.log(" %s %s", '\u2713'.green, name.blue);
         continue;
     }
+
+    console.log(" %s %s : \t trying to setup", '?'.yellow, name.blue);
+
     switch (name) {
     case "update-hosts-file":
-        notImplemented(name);
+        if (updateHostsFile()) {
+            cfg.setup[name] = false;
+            config.save(cfg);
+        }
         break;
     case "vpn-info":
         notImplemented(name);

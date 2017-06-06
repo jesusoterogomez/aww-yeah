@@ -9,19 +9,19 @@ var services = {
         name: "api-auth"
     },
     frontend: {
-        name: "forms"
+        name: "fe-application-loader"
     },
     form: {
         name: "forms"
     },
     "pdf-eid": {
-        name: "forms"
+        name: "pdf-eid"
     },
     validator: {
-        name: "forms"
+        name: "validator"
     },
     sepior: {
-        name: "forms"
+        name: "SepiorService"
     }
 };
 

@@ -2,7 +2,7 @@
 // -*- mode: js -*-
 
 var homeDir  = require('os').homedir();
-var config   = require(homeDir + '/.awwyeah.json');
+var config   = require(homeDir + '/.aww.json');
 var services = require('./../lib/services');
 var Penneo   = require('penneo-js-sdk');
 var prompt   = require('prompt');

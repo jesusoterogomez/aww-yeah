@@ -6,13 +6,13 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $SCRIPT_DIR;
 
-source ./../lib/text.sh
+source ./../../lib/text.sh
 
 IP=`./dockerip.sh`
 DOMAIN=dev.penneo.com
 
-h1 "DNS : Update local host to recognize domain name: $DOMAIN"
-h2 "Setting up your hosts file. This will make it possible for you to open your browser and open the Penneo application with $DOMAIN"
+# h1 "DNS : Update local host to recognize domain name: $DOMAIN"
+# h2 "Setting up your hosts file. This will make it possible for you to open your browser and open the Penneo application with $DOMAIN"
 
 
 # @fixme: refactor this so that grep doesn't return -1 if no match is found.

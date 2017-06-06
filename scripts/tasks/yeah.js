@@ -1,8 +1,6 @@
 #!/usr/bin/node
 // -*- mode: js -*-
 
-var homeDir = require('os').homedir();
-var config  = require(homeDir + '/.awwyeah.json');
 var colors  = require('colors');
 
 

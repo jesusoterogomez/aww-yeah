@@ -3,7 +3,7 @@ var fs      = require('fs');
 var path    = require('path');
 var prompt  = require('prompt-sync')();
 
-var file    = homeDir + '/.awwyeah.json';
+var file    = homeDir + '/.aww.json';
 var backupFile = file + '.bkp';
 
 // logging
@@ -21,8 +21,8 @@ function get(noCache) {
     try {
         config = require(file);
     } catch (err) {
-        console.log('Error reading configuration file at: %s\n'.red, file);
-        console.log(err);
+        console.log("Aww shucks! Dot file missing at: %s\n".yellow, file);
+        console.log("Creating a new .aww.json file now..\n".yellow);
         return init();
     }
     return config;
@@ -36,7 +36,7 @@ function populateTemplate(content) {
 }
 
 function init() {
-    var template = fs.readFileSync(path.join(__dirname, '/../../templates/dotawwyeah.json')).toString();
+    var template = fs.readFileSync(path.join(__dirname, '/../../templates/dotaww.json')).toString();
     var userConfig = populateTemplate(template);
     save(JSON.parse(userConfig));
     return userConfig;
