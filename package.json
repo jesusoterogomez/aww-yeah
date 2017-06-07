@@ -13,7 +13,9 @@
     "auth": "scripts/tasks/auth.js",
     "status": "scripts/tasks/status.js",
     "env": "scripts/tasks/env.js",
-    "monitor": "scripts/tasks/monitor.js"
+    "monitor": "scripts/tasks/monitor.js",
+    "enable": "scripts/tasks/toggle.js enable",
+    "disable": "scripts/tasks/toggle.js disable"
   },
   "author": "Ahmad Nazir Raja",
   "license": "MIT",

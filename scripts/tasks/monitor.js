@@ -16,4 +16,4 @@ serviceIds.split(',').forEach((serviceId, index) => {
   services.exec(serviceId, 'monitor', {
     color: ['gray', 'magenta', 'cyan', 'green', 'blue'][index]
   });
-})
+});
