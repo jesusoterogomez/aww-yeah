@@ -96,7 +96,7 @@ function getLogFile(service) {
     return all[selection - 1];
 }
 
-function exec(id, command) {
+function exec(id, command, options) {
     let service = get(id);
     let cmd;
     switch (command) {
@@ -120,16 +120,22 @@ function exec(id, command) {
     case 'monitor':
         var file = getLogFile(service);
         console.log(file);
+        console.log();
         cmd = 'tail -f ' + file;
         var parts = cmd.split(' ');
         var command = parts.shift();
         var args = parts;
-        childProcess.spawn(command, args, {stdio: 'inherit'});
+        var p = childProcess.spawn(command, args);
+        var color = options.color || 'gray';
+        p.stdout.on('data', (data) => {
+            process.stdout.write(`${data}`[color]);
+        });
+        p.stderr.on('data', (data) => {
+            process.stdout.write(`${data}`.red);
+        });
         return;
-        break;
     case '':
-        console.log('What do I do with this service? Please specify a command'.yellow);
-        return;
+        // intentional break-through
     default:
         console.log('Invalid command specified "%s". Valid commands are up, start, stop, env, monitor.'.yellow, command);
         return;

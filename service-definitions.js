@@ -9,7 +9,10 @@ var services = {
         }
     },
     auth: {
-        name: "api-auth"
+        name: "api-auth",
+        dir: {
+            logs: ['var/logs', 'app/logs/server']
+        }
     },
     frontend: {
         name: "fe-application-loader"

@@ -4,10 +4,16 @@
 var services   = require('./../lib/services');
 
 var args    = require('optimist')
-    .usage('Enable logging')
+    .usage('Monitor one or more services by showing the logs')
     .argv;
 
-var serviceId = args._[0] || '';
-var service = services.validate(serviceId);
+var serviceIds = args._[0] || [];
 
-services.exec(serviceId, 'monitor');
+// Monitor each service
+//
+serviceIds.split(',').forEach((serviceId, index) => {
+  services.validate(serviceId);
+  services.exec(serviceId, 'monitor', {
+    color: ['gray', 'magenta', 'cyan', 'green', 'blue'][index]
+  });
+})
