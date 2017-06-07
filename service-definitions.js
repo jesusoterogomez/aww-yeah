@@ -3,7 +3,10 @@ var services = {
         name: "gateway-service"
     },
     sign: {
-        name: "Symfony2"
+        name: "Symfony2",
+        dir: {
+            logs: ['app/logs', 'app/logs/server']
+        }
     },
     auth: {
         name: "api-auth"

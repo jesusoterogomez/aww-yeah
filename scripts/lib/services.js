@@ -5,6 +5,7 @@ var shelljs      = require('shelljs');
 var childProcess = require('child_process'); // replace shelljs?
 var prettyJson   = require('prettyjson');
 var colors       = require('colors');
+var prompt       = require('prompt-sync')();
 
 var username = config.github.username;
 var ssh      = config.github.ssh;
@@ -36,7 +37,8 @@ function getDefined() {
             id: id,
             name: definition.name,
             url: url,
-            path: config.dir + '/' + definition.name
+            path: config.dir + '/' + definition.name,
+            logs: definition.dir && definition.dir.logs || []
         };
     }
     return all;
@@ -62,6 +64,38 @@ function get(id) {
     return service;
 }
 
+function getLogFile(service) {
+    if (service.logs.length === 0) {
+        console.log('Not implemented'.red);
+        process.exit(0);
+    }
+
+    // Build a list of the files that can be monitored
+    //
+    var all = [];
+    service.logs.forEach(dir => {
+        var path = service.path + '/' + dir + '/';
+        var exec = shelljs.ls(path).forEach(file => {
+            all.push(path + '/' + file);
+        });
+    });
+
+    // Print all options for the log file
+    //
+    all.forEach((file, index) => {
+        // console.log(file);
+        var parts = file.split('/');
+        console.log(" %s : %s ", pad(index + 1).cyan, parts[parts.length-1].gray );
+    });
+
+    // Get the file that we want to monitor
+    //
+    console.log();
+    var selection = prompt('Which file do you want to monitor? '.cyan);
+    console.log();
+    return all[selection - 1];
+}
+
 function exec(id, command) {
     let service = get(id);
     let cmd;
@@ -83,11 +117,21 @@ function exec(id, command) {
         childProcess.spawn(command, args, {stdio: 'inherit'});
         return;
         break;
+    case 'monitor':
+        var file = getLogFile(service);
+        console.log(file);
+        cmd = 'tail -f ' + file;
+        var parts = cmd.split(' ');
+        var command = parts.shift();
+        var args = parts;
+        childProcess.spawn(command, args, {stdio: 'inherit'});
+        return;
+        break;
     case '':
         console.log('What do I do with this service? Please specify a command'.yellow);
         return;
     default:
-        console.log('Invalid command specified "%s". Valid commands are up, start, stop.'.yellow, command);
+        console.log('Invalid command specified "%s". Valid commands are up, start, stop, env, monitor.'.yellow, command);
         return;
     }
 
@@ -107,11 +151,15 @@ function displayStatus(id, silent) {
     if (!silent) {
         console.log(colors.gray(exec.stdout));
     }
-    var pad = '          ';
     console.log('%s :\t %s',
-                (pad + id).slice(-pad.length), // padded service id
+                pad(id), // padded service id
                 (exec.code === 0 ? colors.green('\u2713') : colors.red('\u2718'))
                );
+}
+
+function pad(string) {
+    var chars = '          ';
+    return (chars + string).slice(-chars.length);
 }
 
 module.exports = {
