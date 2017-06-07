@@ -38,7 +38,8 @@ function populateTemplate(content) {
 function init() {
     var template = fs.readFileSync(path.join(__dirname, '/../../templates/dotaww.json')).toString();
     var userConfig = populateTemplate(template);
-    save(JSON.parse(userConfig));
+    userConfig = JSON.parse(userConfig);
+    save(userConfig);
     return userConfig;
 }
 

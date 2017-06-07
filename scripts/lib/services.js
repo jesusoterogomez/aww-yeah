@@ -1,5 +1,4 @@
-var homeDir      = require('os').homedir();
-var config       = require(homeDir + '/.aww.json');
+var config  = require('./../lib/config');
 var definitions  = require('./../../service-definitions');
 var shelljs      = require('shelljs');
 var childProcess = require('child_process'); // replace shelljs?
@@ -7,8 +6,9 @@ var prettyJson   = require('prettyjson');
 var colors       = require('colors');
 var prompt       = require('prompt-sync')();
 
-var username = config.github.username;
-var ssh      = config.github.ssh;
+var cfg      = config.get();
+var username = cfg.github.username;
+var ssh      = cfg.github.ssh;
 
 // Shell commands for docker services using project runner
 let dockerCommand = {
@@ -21,9 +21,9 @@ let dockerCommand = {
 
 function getDefined() {
     var all = {};
-    for (var id in config.services) {
+    for (var id in cfg.services) {
         // Filter out disabled services
-        if (!config.services[id]) {
+        if (!cfg.services[id]) {
             continue;
         }
         var definition = definitions[id];
@@ -37,7 +37,7 @@ function getDefined() {
             id: id,
             name: definition.name,
             url: url,
-            path: config.dir + '/' + definition.name,
+            path: cfg.dir + '/' + definition.name,
             logs: definition.dir && definition.dir.logs || []
         };
     }

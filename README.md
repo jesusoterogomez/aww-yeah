@@ -1,16 +1,19 @@
 # Aww Yeah!
 
-## Setup ##
+## Install
 
-- Run the setup script
 ```
-./scripts/install/setup.sh
+./scripts/install.sh
 ```
 
-- The setup should add the `.aww.json` file to `~/.aww.json`. For now, this needs to be done manually. Have a look at `./templates/dotaww.json`  
-
-- Spin up the services:
+## Run
 
 ```
 aww yeah
+```
+
+At the moment, `aww yeah` is a stub and will ask you to to run the pre-configured services manually:
+
+```
+aww service all
 ```

@@ -24,5 +24,6 @@ serviceIds.split(',').forEach((serviceId, index) => {
   c.services[serviceId] = enable;
 
   config.save(c);
-  console.log('Service %s is %s.\n'.green, serviceId, enable ? 'enabled' : 'disabled');
+  var color = enable ? 'green' : 'yellow';
+  console.log('Service %s is %s.\n'[color], serviceId, enable ? 'enabled' : 'disabled');
 });
