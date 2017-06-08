@@ -1,5 +1,5 @@
 {
-  "name": "awwyeah",
+  "name": "aww-yeah",
   "version": "0.0.1",
   "description": "Run penneo services without any hassle",
   "main": "main.js",
@@ -8,7 +8,9 @@
     "setup": "scripts/tasks/setup.js",
     "yeah": "scripts/tasks/yeah.js",
     "no": "scripts/tasks/down.js",
-    "service": "scripts/tasks/service.js",
+    "up": "scripts/tasks/run.js up",
+    "start": "scripts/tasks/run.js start",
+    "stop": "scripts/tasks/run.js stop",
     "list": "scripts/tasks/list.js",
     "auth": "scripts/tasks/auth.js",
     "status": "scripts/tasks/status.js",

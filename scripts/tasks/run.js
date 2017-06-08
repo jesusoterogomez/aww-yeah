@@ -7,8 +7,8 @@ var args    = require('optimist')
     .usage('Manage a service')
     .argv;
 
-var serviceId = args._[0] || '',
-    command   = args._[1] || 'up';
+var command   = args._[0] || 'up';
+var serviceId = args._[1] || '';
 
 if (serviceId === 'all') {
     for (var id in services.getDefined()) {

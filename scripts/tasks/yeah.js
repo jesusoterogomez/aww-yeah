@@ -9,6 +9,6 @@ console.log('Not implemented'.red);
 console.log();
 console.log(
     "For running all services, use: \n"
-        + "$ aww service all".gray
+        + "$ aww up all".gray
         + "\n"
 );
