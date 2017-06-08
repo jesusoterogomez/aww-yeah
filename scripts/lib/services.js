@@ -76,6 +76,9 @@ function getLogFile(service) {
     service.logs.forEach(dir => {
         var path = service.path + '/' + dir + '/';
         var exec = shelljs.ls(path).forEach(file => {
+            if (!file.endsWith('.log')) {
+                return;
+            }
             all.push(path + '/' + file);
         });
     });
