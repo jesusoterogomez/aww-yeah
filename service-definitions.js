@@ -27,7 +27,10 @@ var services = {
         name: "validator"
     },
     sepior: {
-        name: "SepiorService"
+        name: "SepiorService",
+        dir: {
+            logs: ['app/logs']
+        }
     }
 };
 
