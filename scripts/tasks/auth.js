@@ -1,6 +1,3 @@
-#!/usr/bin/node
-// -*- mode: js -*-
-
 var homeDir  = require('os').homedir();
 var config   = require(homeDir + '/.aww.json');
 var services = require('./../lib/services');

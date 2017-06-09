@@ -1,6 +1,3 @@
-#!/usr/bin/node
-// -*- mode: js -*-
-
 var config  = require('./../lib/config');
 var colors  = require('colors');
 var path    = require('path');

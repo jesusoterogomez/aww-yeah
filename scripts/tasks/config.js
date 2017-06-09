@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/local/bin/node
 // -*- mode: js -*-
 
 var config     = require('./../lib/config');

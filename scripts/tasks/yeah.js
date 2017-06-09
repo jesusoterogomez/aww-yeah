@@ -1,6 +1,3 @@
-#!/usr/bin/node
-// -*- mode: js -*-
-
 var colors  = require('colors');
 
 

@@ -1,6 +1,3 @@
-#!/usr/bin/node
-// -*- mode: js -*-
-
 var services   = require('./../lib/services');
 
 var args    = require('optimist')
