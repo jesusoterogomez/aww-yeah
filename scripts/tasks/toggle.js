@@ -1,6 +1,3 @@
-#!/usr/bin/node
-// -*- mode: js -*-
-
 var config   = require('./../lib/config');
 var services = require('./../lib/services');
 
