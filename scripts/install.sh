@@ -9,5 +9,9 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # 3. install docker host
 # 4. install packer
 
+# Dependencies
+#
+cd $SCRIPT_DIR/../
+npm install
 
 ln -sf $SCRIPT_DIR/aww.sh /usr/local/bin/aww
