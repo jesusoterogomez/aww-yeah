@@ -38,7 +38,7 @@ function getDefined() {
             name: definition.name,
             url: url,
             path: cfg.dir + '/' + definition.name,
-            logs: definition.dir && definition.dir.logs || []
+            logs: definition.logs
         };
     }
     return all;
@@ -64,8 +64,22 @@ function get(id) {
     return service;
 }
 
+function getLogFileForProfile(service, profile) {
+    // Get the profile is requested
+    if (!service.logs || !service.logs.profiles) {
+        console.log('Profile "%s" is not defined for service "%s"'.red, profile, service.id);
+        process.exit(0);
+    }
+    var file = service.logs.profiles[profile];
+    if (!file) {
+        console.log('Profiles are not defined for service %s'.red, service.id);
+        process.exit(0);
+    }
+    return service.path + '/' + file;
+}
+
 function getLogFile(service) {
-    if (service.logs.length === 0) {
+    if (!service.logs) {
         console.log('Not implemented'.red);
         process.exit(0);
     }
@@ -73,7 +87,7 @@ function getLogFile(service) {
     // Build a list of the files that can be monitored
     //
     var all = [];
-    service.logs.forEach(dir => {
+    service.logs.directories.forEach(dir => {
         var path = service.path + '/' + dir + '/';
         var exec = shelljs.ls(path).forEach(file => {
             if (!file.endsWith('.log')) {
@@ -121,7 +135,7 @@ function exec(id, command, options) {
         return;
         break;
     case 'monitor':
-        var file = getLogFile(service);
+        var file = options.profile ? getLogFileForProfile(service, options.profile) : getLogFile(service);
         console.log(file);
         console.log();
         cmd = 'tail -f ' + file;

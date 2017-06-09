@@ -4,14 +4,20 @@ var services = {
     },
     sign: {
         name: "Symfony2",
-        dir: {
-            logs: ['app/logs', 'app/logs/server']
+        logs: {
+            directories: ['app/logs', 'app/logs/server'],
+            profiles: {
+                default: 'app/logs/server/nginx_access.log'
+            }
         }
     },
     auth: {
         name: "api-auth",
-        dir: {
-            logs: ['var/logs', 'app/logs/server']
+        logs: {
+            directories: ['var/logs', 'app/logs/server'],
+            profiles: {
+                default: 'app/logs/server/nginx_access.log'
+            }
         }
     },
     frontend: {
@@ -28,8 +34,8 @@ var services = {
     },
     sepior: {
         name: "SepiorService",
-        dir: {
-            logs: ['app/logs']
+        logs: {
+            directories: ['app/logs']
         }
     }
 };
