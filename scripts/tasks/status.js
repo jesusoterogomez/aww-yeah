@@ -9,11 +9,12 @@ var args    = require('optimist')
 var serviceId = args._[0];
 
 if (serviceId) {
-    services.validate(serviceId);
-    services.displayStatus(serviceId);
+    var service = services.validate(serviceId);
+    services.displayStatus(service);
 } else {
-    for (var id in services.getDefined()) {
-        services.displayStatus(id, true);
+    var defined = services.getDefined();
+    for (var id in defined) {
+        services.displayStatus(defined[id], true);
     }
 }
 

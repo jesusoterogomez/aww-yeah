@@ -168,7 +168,8 @@ function displayInfo(id) {
     console.log('');
 }
 
-function displayStatus(id, silent) {
+function displayStatus(service, silent) {
+    var id = service.id;
     var command = dockerCommand.isRunning.replace('{service-id}', id);
     var exec = shelljs.exec(command, {silent: true});
     if (!silent) {
