@@ -33,13 +33,11 @@ function getDefined() {
                    ? definition.name
                    : username + '/' + definition.name)
                 + '.git';
-        all[id] = {
+        all[id] = Object.assign(definition, {
             id: id,
-            name: definition.name,
             url: url,
-            path: cfg.dir + '/' + definition.name,
-            logs: definition.logs
-        };
+            path: cfg.dir + '/' + definition.name
+        });
     }
     return all;
 }
@@ -116,41 +114,33 @@ function getLogFile(service) {
 function exec(id, command, options) {
     let service = get(id);
     let cmd;
+    let raw = false;
     switch (command) {
     case 'up':
-        cmd = service.path + "/" + dockerCommand.up;
+        cmd = service.commands && service.commands.up || dockerCommand.up;
         break;
     case 'start':
-        cmd = service.path + "/" + dockerCommand.start;
+        cmd = service.commands && service.commands.start || dockerCommand.start;
         break;
     case 'stop':
-        cmd = service.path + "/" + dockerCommand.stop;
+        // @todo: need to find a better way to determine whether the cmd is raw
+        // or not
+        if (service.commands && service.commands.stop) {
+            raw = true;
+            cmd = service.commands.stop;
+        } else {
+            cmd = dockerCommand.stop;
+        }
         break;
     case 'env':
-        cmd = service.path + "/" + dockerCommand.env;
-        var parts = cmd.split(' ');
-        var command = parts.shift();
-        var args = parts;
-        childProcess.spawn(command, args, {stdio: 'inherit'});
-        return;
+        cmd = dockerCommand.env;
         break;
     case 'monitor':
         var file = options.profile ? getLogFileForProfile(service, options.profile) : getLogFile(service);
         console.log(file);
         console.log();
         cmd = 'tail -f ' + file;
-        var parts = cmd.split(' ');
-        var command = parts.shift();
-        var args = parts;
-        var p = childProcess.spawn(command, args);
-        var color = options.color || 'gray';
-        p.stdout.on('data', (data) => {
-            process.stdout.write(`${data}`[color]);
-        });
-        p.stderr.on('data', (data) => {
-            process.stdout.write(`${data}`.red);
-        });
-        return;
+        break;
     case '':
         // intentional break-through
     default:
@@ -158,9 +148,22 @@ function exec(id, command, options) {
         return;
     }
 
-    console.log(colors.gray(cmd));
-    var exec = shelljs.exec(cmd, {silent: true});
-    console.log(colors.gray(exec.stdout || exec.stderr));
+    if (raw) {
+        console.log(colors.gray(cmd));
+        var exec = shelljs.exec(cmd, {silent: true});
+        console.log(colors.gray(exec.stdout || exec.stderr));
+    } else {
+        console.log(cmd.gray);
+        console.log();
+        var parts = cmd.split(' ');
+        var command = parts.shift();
+        var args = parts;
+        var p = childProcess.spawn(command, args, {
+            cwd: service.path,
+            stdio: 'inherit'
+            // detached: true
+        });
+    }
 }
 
 function displayInfo(id) {
@@ -170,9 +173,12 @@ function displayInfo(id) {
 
 function displayStatus(service, silent) {
     var id = service.id;
-    var command = dockerCommand.isRunning.replace('{service-id}', id);
+    var command = service.commands && service.commands.isRunning || dockerCommand.isRunning;
+    command = command.replace('{service-id}', id);
     var exec = shelljs.exec(command, {silent: true});
     if (!silent) {
+        console.log(command.gray);
+        console.log();
         console.log(colors.gray(exec.stdout));
     }
     console.log('%s :\t %s',

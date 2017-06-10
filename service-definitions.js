@@ -21,7 +21,13 @@ var services = {
         }
     },
     frontend: {
-        name: "fe-application-loader"
+        name: "fe-application-loader",
+        commands: {
+            up: 'npm start #aww-fe-application-loader',
+            start: 'npm start #aww-frontend',
+            stop: "ps ax | grep \\#aww-frontend | grep -v grep | awk '{print $1}' | xargs -I % kill %",
+            isRunning: "ps ax | grep \\#aww-frontend | grep -v grep"
+        }
     },
     form: {
         name: "forms"
