@@ -166,8 +166,15 @@ function exec(id, command, options) {
     }
 }
 
-function displayInfo(id) {
-    console.log(prettyJson.render(get(id)));
+function displayInfo(id, brief) {
+    var service = get(id);
+    var info = {
+        name: service.name
+    };
+    if (!brief) {
+        info = Object.assign(info, service);
+    }
+    console.log(prettyJson.render(info));
     console.log('');
 }
 

@@ -9,7 +9,7 @@ var serviceId = args._[1] || '';
 
 if (serviceId === 'all') {
     for (var id in services.getDefined()) {
-        services.displayInfo(id);
+        services.displayInfo(id, true);
         services.exec(id, command);
     }
 } else {
