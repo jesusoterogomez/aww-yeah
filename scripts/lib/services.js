@@ -199,11 +199,19 @@ function pad(string) {
     return (chars + string).slice(-chars.length);
 }
 
+function getDocs(service, ignoreMissing) {
+    if (!service.port || !service.docs || !service.docs.publicUrl) {
+        return null;
+    }
+
+    return 'http://dev.penneo.com:' + service.port + service.docs.publicUrl;
+}
+
 module.exports = {
     getDefined: getDefined,
     exec: exec,
     validate: validate,
     displayInfo: displayInfo,
-    displayStatus: displayStatus
-
+    displayStatus: displayStatus,
+    getDocs: getDocs
 }

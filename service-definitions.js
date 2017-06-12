@@ -9,6 +9,10 @@ var services = {
             profiles: {
                 default: 'app/logs/server/nginx_access.log'
             }
+        },
+        port: 8000,
+        docs: {
+            publicUrl: "/app_dev.php/api/docs"
         }
     },
     auth: {
@@ -18,6 +22,10 @@ var services = {
             profiles: {
                 default: 'app/logs/server/nginx_access.log'
             }
+        },
+        port: 8002,
+        docs: {
+            publicUrl: "/app_dev.php/api/doc"
         }
     },
     frontend: {
@@ -30,7 +38,11 @@ var services = {
         }
     },
     form: {
-        name: "forms"
+        name: "forms",
+        port: 8001,
+        docs: {
+            publicUrl: "/app_dev.php/api/doc"
+        }
     },
     "pdf-eid": {
         name: "pdf-eid"
