@@ -3,12 +3,12 @@ var p        = require('child_process'); // replace shelljs?
 var path    = require('path');
 
 var args    = require('optimist')
-    .usage('Manage a service')
+    .usage('Generate public documentation')
     .argv;
 
-var serviceIds = args._[0] || 'all';
+var serviceId = args._[0] || 'all';
 
-if (serviceIds === 'all') {
+if (serviceId === 'all') {
 
     console.log('Here is an overview of the available documentation (public for users). Specify the service to get the actual documentation\n'.yellow);
 
@@ -21,12 +21,10 @@ if (serviceIds === 'all') {
         console.log('%s : %s', id, docs);
     }
 } else {
-    serviceIds.split(',').forEach((id, index) => {
-        var service = services.validate(id);
-        var link = services.getDocs(service);
-        var cmd = path.join(__dirname, '/show-documentation.sh');
-        p.spawn(cmd, [link], {stdio: 'inherit'});
-    });
+    var service = services.validate(serviceId);
+    var link = services.getDocs(service);
+    var cmd = path.join(__dirname, '/show-documentation.sh');
+    p.spawn(cmd, [link], {stdio: 'inherit'});
 }
 
 console.log();
