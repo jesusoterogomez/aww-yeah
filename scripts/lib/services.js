@@ -133,7 +133,7 @@ function exec(id, command, options) {
         }
         break;
     case 'env':
-        cmd = dockerCommand.env;
+        cmd = service.commands && service.commands.env || dockerCommand.env;
         break;
     case 'monitor':
         var file = options.profile ? getLogFileForProfile(service, options.profile) : getLogFile(service);

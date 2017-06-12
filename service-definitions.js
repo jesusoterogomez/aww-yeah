@@ -1,6 +1,9 @@
 var services = {
     gateway: {
-        name: "gateway-service"
+        name: "gateway-service",
+        commands: {
+            env: 'project-runner/login.sh prod'
+        }
     },
     sign: {
         name: "Symfony2",
