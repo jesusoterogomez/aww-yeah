@@ -18,7 +18,8 @@
         "monitor": "node scripts/tasks/monitor.js",
         "enable": "node scripts/tasks/toggle.js enable",
         "disable": "node scripts/tasks/toggle.js disable",
-        "docs": "node scripts/tasks/docs.js"
+        "docs": "node scripts/tasks/docs.js",
+        "readme": "node scripts/tasks/readme.js"
     },
     "author": "Ahmad Nazir Raja",
     "license": "MIT",
