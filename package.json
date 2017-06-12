@@ -11,7 +11,7 @@
         "up": "node scripts/tasks/run.js up",
         "start": "node scripts/tasks/run.js start",
         "stop": "node scripts/tasks/run.js stop",
-        "list": "node scripts/tasks/list.js",
+        "enabled": "node scripts/tasks/enabled.js",
         "auth": "node scripts/tasks/auth.js",
         "status": "node scripts/tasks/status.js",
         "env": "node scripts/tasks/env.js",

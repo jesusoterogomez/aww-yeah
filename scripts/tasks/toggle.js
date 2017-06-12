@@ -8,6 +8,11 @@ var args    = require('optimist')
 var enable     = args._[0] === 'enable';
 var serviceIds = args._[1];
 
+if (!serviceIds) {
+    console.log('No services defined to be %s. Options are: %s\n'.red,  enable ? 'enabled' : 'disabled', Object.keys(config.get().services));
+    process.exit(0);
+}
+
 serviceIds.split(',').forEach((serviceId, index) => {
   var c = config.get();
   if (typeof c.services[serviceId] === 'undefined' ) {
