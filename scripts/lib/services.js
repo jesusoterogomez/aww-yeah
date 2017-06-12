@@ -19,11 +19,12 @@ let dockerCommand = {
     env: 'project-runner/login.sh dev'
 };
 
-function getDefined() {
+function getDefined(includeDisabled) {
     var all = {};
     for (var id in cfg.services) {
         // Filter out disabled services
-        if (!cfg.services[id]) {
+        var enabled = !!cfg.services[id];
+        if (!includeDisabled && !enabled) {
             continue;
         }
         var definition = definitions[id];
@@ -36,7 +37,8 @@ function getDefined() {
         all[id] = Object.assign(definition, {
             id: id,
             url: url,
-            path: cfg.dir + '/' + definition.name
+            path: cfg.dir + '/' + definition.name,
+            enabled: enabled
         });
     }
     return all;

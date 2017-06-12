@@ -22,9 +22,20 @@ function pad(string) {
 if (service) {
     console.log(prettyJson.render(service, options));
 } else {
-    var all = services.getDefined();
+    var all = services.getDefined(true);
     for (var id in all) {
-        console.log('%s : %s', pad(id).green, all[id].name);
+        var service = all[id],
+            name  = service.name,
+            color = 'green',
+            str   = '%s : %s',
+            id    = pad(id);
+        if (!service.enabled) {
+            color = 'gray';
+            str   = str[color];
+        } else {
+            id    = id['green'];
+        }
+        console.log(str, id, name);
     }
 }
 
