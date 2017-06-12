@@ -9,6 +9,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # 3. install docker host
 # 4. install packer
 
+# sudo apt-get install pandoc
+
 # Dependencies
 #
 cd $SCRIPT_DIR/../
