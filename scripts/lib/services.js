@@ -138,10 +138,25 @@ function exec(id, command, options) {
         cmd = service.commands && service.commands.env || dockerCommand.env;
         break;
     case 'monitor':
+        // @todo: move this to a separate file (lib/monitor.js)
         var file = options.profile ? getLogFileForProfile(service, options.profile) : getLogFile(service);
         console.log(file);
         console.log();
         cmd = 'tail -f ' + file;
+        var parts = cmd.split(' ');
+        var command = parts.shift();
+        var args = parts;
+        var p = childProcess.spawn(command, args);
+        var color = options.color || 'gray';
+        var name = ('[ ' + service.id.toUpperCase() + ' ] ').bold;
+        p.stdout.on('data', (data) => {
+            process.stdout.write(`${data}`.replace(/^/g, name)[color]);
+        });
+        p.stderr.on('data', (data) => {
+            process.stdout.write(`${data}`.red);
+        });
+        return;
+
         break;
     case '':
         // intentional break-through

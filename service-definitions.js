@@ -3,7 +3,14 @@ var services = {
         name: "gateway-service",
         commands: {
             env: 'project-runner/login.sh prod'
-        }
+        },
+        logs: {
+            directories: ['app/log'],
+            profiles: {
+                default: 'app/log/nginx_access.log'
+            }
+        },
+
     },
     sign: {
         name: "Symfony2",
