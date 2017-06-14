@@ -3,15 +3,42 @@
     "github": {
         "username": "{{github.username}}"
     },
+    "environments": {
+        "local": "dev.penneo.com:9999"
+    },
     "services": {
-        "gateway": true,
-        "sign": true,
-        "auth": true,
-        "frontend": false,
-        "form": false,
-        "pdf-eid": false,
-        "validator": false,
-        "sepior": false
+        "gateway": {
+            "enabled": true,
+            "environment": "local"
+        },
+        "sign": {
+            "enabled": true,
+            "environment": "local"
+        },
+        "auth": {
+            "enabled": true,
+            "environment": "local"
+        },
+        "frontend": {
+            "enabled": false,
+            "environment": "local"
+        },
+        "form": {
+            "enabled": false,
+            "environment": "local"
+        },
+        "pdf-eid": {
+            "enabled": false,
+            "environment": "local"
+        },
+        "validator": {
+            "enabled": false,
+            "environment": "local"
+        },
+        "sepior": {
+            "enabled": false,
+            "environment": "local"
+        }
     },
     "setup": {
         "update-hosts-file": false,

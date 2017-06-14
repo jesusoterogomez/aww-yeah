@@ -5,8 +5,9 @@ var args    = require('optimist')
     .usage('Enable a pre-defined service')
     .argv;
 
-var enable     = args._[0] === 'enable';
-var serviceIds = args._[1];
+var enable      = args._[0] === 'enable';
+var serviceIds  = args._[1];
+var environment = args._[2] || 'local';
 
 if (!serviceIds) {
     console.log('No services defined to be %s. Options are: %s\n'.red,  enable ? 'enabled' : 'disabled', Object.keys(config.get().services));
@@ -23,7 +24,11 @@ serviceIds.split(',').forEach((serviceId, index) => {
     console.log('Service %s is already %s.\n'.blue, serviceId, enable ? 'enabled' : 'disabled');
     return;
   }
-  c.services[serviceId] = enable;
+
+  var service = c.services[serviceId];
+
+  service.enable = enable;
+  service.environment = environment;
 
   config.save(c);
   var color = enable ? 'green' : 'yellow';
