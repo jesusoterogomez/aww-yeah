@@ -1,4 +1,4 @@
-var config  = require('./../lib/config');
+var config       = require('./../lib/config');
 var definitions  = require('./../../service-definitions');
 var shelljs      = require('shelljs');
 var childProcess = require('child_process'); // replace shelljs?
@@ -23,7 +23,8 @@ function getDefined(includeDisabled) {
     var all = {};
     for (var id in cfg.services) {
         // Filter out disabled services
-        var enabled = !!cfg.services[id];
+        let {enabled, environment} = cfg.services[id];
+
         if (!includeDisabled && !enabled) {
             continue;
         }
@@ -38,7 +39,8 @@ function getDefined(includeDisabled) {
             id: id,
             url: url,
             path: cfg.dir + '/' + definition.name,
-            enabled: enabled
+            enabled: !!enabled,
+            environment: environment
         });
     }
     return all;
