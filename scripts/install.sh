@@ -13,7 +13,11 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Dependencies
 #
-cd $SCRIPT_DIR/../
+# cd $SCRIPT_DIR/../
 npm install
-
+npm run build
 ln -sf $SCRIPT_DIR/aww.sh /usr/local/bin/aww
+
+echo 'Aww yeah!';
+echo 'You can now use the `aww` command from any directory';
+echo 'Use `aww help` to get started';
