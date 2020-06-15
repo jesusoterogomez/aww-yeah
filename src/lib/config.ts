@@ -33,7 +33,13 @@ export const getServices = async (): Promise<Service[]> => {
 };
 
 export const getRootDir = async (): Promise<string> => {
-    return await get("rootDir", stateFileUri);
+    const rootDir = await get("rootDir", stateFileUri);
+
+    if (!rootDir.endsWith("/")) {
+        return rootDir + "/"; // Always return root directory with a trailing slash
+    }
+
+    return rootDir;
 };
 
 export const getState = async (): Promise<LocalState> => {

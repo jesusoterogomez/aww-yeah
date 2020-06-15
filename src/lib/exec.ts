@@ -6,7 +6,7 @@ import chalk from "chalk";
 
 export const exec = (command, path) => {
     shell.exec(command, {
-        cwd: path.endsWith("/") ? path : path + "/",
+        cwd: path,
         stdio: "inherit",
     });
 };
@@ -30,7 +30,7 @@ export const runTask = async (serviceId, taskName) => {
     // Shell.js can't run interactive commands.
     // @see: https://github.com/shelljs/shelljs/wiki/FAQ#running-interactive-programs-with-exec
     return childProcess.spawn(command, args, {
-        cwd: path.endsWith("/") ? path : path + "/",
+        cwd: path,
         stdio: "inherit",
     });
 };
