@@ -1,4 +1,12 @@
-node_modules
-*.log
+# Editor files
 *.code-workspace
+
+# Build / Dependencies
 dist
+node_modules
+
+# Local configuration files
+aww.state.json
+
+# Logs
+*.log
