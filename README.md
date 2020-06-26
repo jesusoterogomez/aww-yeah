@@ -47,7 +47,7 @@ The first version of _aww yeah_ assummed you knew the commands or made you very 
 
 The new version relies heavily on the use of wizards and command prompts, which will make it easy to use for non experienced users.
 
-See this short example:
+_See this short example:_
 
 <img width="590" src="https://user-images.githubusercontent.com/5709736/85855353-6d114280-b7b6-11ea-9b02-987741798eee.gif"/>
 
