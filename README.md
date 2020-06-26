@@ -21,6 +21,35 @@ So far, you can perform the following commands:
 | `aww login [service]`   | Log in to the docker container of a service. The service must be already running                                           |
 | `aww clone [service]`   | Clone the repository of the service                                                                                        |
 
+
+#### 🤔Pro Tip:
+
+You don't need to remember any of these commands. You can just type `aww` and follow the wizard which will let you choose the service and command to run.
+
+#### 🧠Pro-er Tip:
+
+There are some commands, like `run`, that can be run in parallel between multiple services, if you type `aww run` and make a selection, this selection will be remembered next time you use the same command. This means that if you always run the same stack every day, you don't need to manually select the same services every time.
+
+#### ⚛️Pro-est Tip:
+
+You can still run the commands directly.
+
+_Example:_
+```
+- You can run `aww`, and follow the wizard to run the frontend
+- You can run `aww run`, and then pick frontend from the list for the same result.
+- You can type `aww run fe-webapp` and the command will be run directly without any prompts.
+```
+
+## Why even make a new version?
+
+The first version of _aww yeah_ assummed you knew the commands or made you very reliant on the help documentation, which was usually difficult to keep in sync with the available commands. This was problematic especially for new team members.
+
+The new version relies heavily on the use of wizards and command prompts, which will make it easy to use for non experienced users.
+
+See this short example:
+
+
 ## Ok, I'm sold, how do I use it?
 
 A nice installer will come at a later point, but for now, you'll have to clone this repository and run a couple of commands.
