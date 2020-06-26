@@ -8,7 +8,10 @@
         "watch": "rollup -cw",
         "start": "node dist/index.js"
     },
-    "author": "Ahmad Nazir Raja",
+    "author": "Jesús Otero <hello@jesusoterogomez.com>",
+    "contributors": [
+        "Ahmad Raja"
+    ],
     "license": "MIT",
     "dependencies": {
         "@types/colors": "^1.2.1",
