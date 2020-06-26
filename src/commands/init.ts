@@ -73,7 +73,7 @@ export const init = async () => {
         // Update the configuration to store the root directory for penneo projects
         // The path must end with a trailing slash. If the user didn't input it
         // we add it when storing it to the config
-        setState({
+        await setState({
             rootDir: responses.rootDir,
         });
     }
