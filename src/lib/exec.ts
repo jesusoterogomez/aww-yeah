@@ -13,6 +13,13 @@ export const exec = (command, path) => {
 
 export const runTask = async (serviceId, taskName) => {
     const rootDir = await getRootDir();
+
+    if (!rootDir) {
+        return console.log(
+            chalk`{white.bold You haven't configured {green.bold Aww Yeah} yet. Run {yellow.bold aww init} first :)}`
+        );
+    }
+
     const serviceData = await getService(serviceId);
 
     const task = serviceData?.tasks[taskName] as string;

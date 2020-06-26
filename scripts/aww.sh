@@ -6,6 +6,6 @@ SCRIPT_DIR="$( cd "$( dirname "${DIR}" )" && pwd )"
 # Run the task
 cd "${SCRIPT_DIR}/../"
 
-# npm run-script start -- ${@:1}
+# Call the built distributable and forward all positional arguments
 node './dist/index.js' -- ${@:1}
 
