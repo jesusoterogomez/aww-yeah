@@ -12,6 +12,15 @@
             }
         },
         {
+            "repo": "fe-desktop",
+            "name": "Penneo Desktop",
+            "tasks": {
+                "clone": "git clone --recursive git@github.com:Penneo/fe-desktop.git",
+                "setup": "npm install",
+                "run": "npm start"
+            }
+        },
+        {
             "repo": "mock-entrypoint",
             "name": "Mock Entrypoint",
             "tasks": {
@@ -40,6 +49,30 @@
             "name": "Signing Service",
             "tasks": {
                 "clone": "git clone --recursive git@github.com:Penneo/signing-service.git",
+                "setup": "./scripts/bootstrap.sh",
+                "run": "./project-runner/run.sh dev",
+                "stop": "./project-runner/run.sh dev stop",
+                "restart": "./project-runner/run.sh dev up -d --force-recreate",
+                "login": "./project-runner/login.sh dev"
+            }
+        },
+        {
+            "repo": "api-auth",
+            "name": "Auth Service",
+            "tasks": {
+                "clone": "git clone --recursive git@github.com:Penneo/api-auth.git",
+                "setup": "./scripts/bootstrap.sh",
+                "run": "./project-runner/run.sh dev",
+                "stop": "./project-runner/run.sh dev stop",
+                "restart": "./project-runner/run.sh dev up -d --force-recreate",
+                "login": "./project-runner/login.sh dev"
+            }
+        },
+        {
+            "repo": "forms",
+            "name": "Forms Service",
+            "tasks": {
+                "clone": "git clone --recursive git@github.com:Penneo/forms.git",
                 "setup": "./scripts/bootstrap.sh",
                 "run": "./project-runner/run.sh dev",
                 "stop": "./project-runner/run.sh dev stop",
