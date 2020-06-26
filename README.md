@@ -3,7 +3,7 @@
 ## What is "aww yeah"?
 
 1. A terrible name for a tool
-2. A command line tool that helps you set up, run, stop, restart, etc. your Penneo local stack of services.
+2. A command line tool that helps you manage (set up, run, stop, restart, etc) your Penneo local stack of services.
 
 ## What can I do with it?
 
