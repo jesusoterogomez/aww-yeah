@@ -11,6 +11,12 @@ export const exec = (command, path) => {
     });
 };
 
+export const execSync = (command, path) => {
+    return shell.exec(command, {
+        cwd: path,
+    });
+};
+
 export const runTask = async (serviceId, taskName) => {
     const rootDir = await getRootDir();
 

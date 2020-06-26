@@ -80,9 +80,11 @@ export const init = async () => {
 
     // Clone the services the user selected into the directory
     if (responses.reposToClone) {
-        responses.reposToClone.forEach(async (serviceId) => {
-            await cloneService(serviceId);
+        const cloneTasks = responses.reposToClone.map((serviceId) => {
+            return cloneService(serviceId);
         });
+
+        await Promise.all(cloneTasks);
     }
 
     // Setup the projects that were chosen to be cloned
@@ -92,9 +94,11 @@ export const init = async () => {
         {yellow.bold Setting up projects. This could take a few minutes 🚀}
             `
         );
-        responses.reposToClone.forEach(async (serviceId) => {
-            await setupService(serviceId);
+        const setupTasks = responses.reposToClone.forEach((serviceId) => {
+            setupService(serviceId);
         });
+
+        await Promise.all(setupTasks);
     }
 
     console.log(

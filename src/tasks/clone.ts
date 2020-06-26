@@ -6,7 +6,7 @@ import {
     getAvailableServicesByTask,
 } from "lib/service";
 import { getRootDir } from "lib/config";
-import { exec } from "lib/exec";
+import { execSync } from "lib/exec";
 import { TaskNames } from "types";
 
 export const cloneService = async (serviceId) => {
@@ -24,7 +24,7 @@ export const cloneService = async (serviceId) => {
     const command = serviceData?.tasks.clone;
 
     // Clone repositories relative to the root directory
-    exec(command, rootDir);
+    return execSync(command, rootDir);
 };
 
 export const clone = async (serviceId?: string) => {
