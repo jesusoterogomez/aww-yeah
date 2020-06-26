@@ -1,4 +1,4 @@
-import prompts from "prompts";
+import { prompts } from "lib/prompts";
 import { getServices } from "lib/config";
 import { runTask } from "lib/exec";
 import { isServiceCloned } from "lib/service";
@@ -57,6 +57,11 @@ export const setup = async (serviceId?: string) => {
     ];
 
     const responses = await prompts(questions as any);
+
+    if (responses.__cancelled__) {
+        return console.log(chalk`
+    I get it, setup takes time. I'll be waiting, just run {yellow.bold aww setup [service]}`);
+    }
 
     responses.service.forEach(async (service) => {
         await setupService(service);

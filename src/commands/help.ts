@@ -35,6 +35,10 @@ export const help = async () => {
                                    {cyan If you don't specify a service, you are able to pick multiple services from a list ${EMPTY_NEWLINE_CHARACTER}}`,
             },
             {
+                command: chalk`{yellow aww stop [service]}`,
+                description: chalk`{gray Stops the docker container of a service ${EMPTY_NEWLINE_CHARACTER}}`,
+            },
+            {
                 command: chalk`{yellow aww restart [service]}`,
                 description: chalk`{gray Restart the docker container of a service ${EMPTY_NEWLINE_CHARACTER}}`,
             },
@@ -64,6 +68,9 @@ export const help = async () => {
 
     console.log();
     console.log(chalk`{green Service Tasks:}`);
+    console.log(
+        chalk`{gray [Not all services support every task. See aww.config.json]}`
+    );
     console.log();
     console.log(chalk(tasks));
     console.log(

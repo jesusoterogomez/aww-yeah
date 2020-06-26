@@ -1,14 +1,16 @@
-import prompts from "prompts";
-import { getService } from "lib/service";
-import { getServices, getState, setState } from "lib/config";
+import { prompts } from "lib/prompts";
+import { getState, setState } from "lib/config";
 import { runTask } from "lib/exec";
+import chalk from "chalk";
+import { TaskNames } from "types";
+import { getAvailableServicesByTask } from "lib/service";
 
 export const restart = async (serviceId?: string) => {
     if (serviceId) {
-        return runTask(serviceId, "restart");
+        return runTask(serviceId, TaskNames.RESTART);
     }
 
-    const services = await getServices();
+    const services = await getAvailableServicesByTask(TaskNames.RESTART);
     const state = await getState();
 
     const prevChoices = state["remember:restart"] || [];
@@ -32,10 +34,14 @@ export const restart = async (serviceId?: string) => {
 
     const responses = await prompts(questions as any);
 
+    if (responses.__cancelled__) {
+        return console.log(chalk`
+    I guess everthing is running fine, then :)`);
+    }
     // Remember responses for next time.
     await setState({ "remember:restart": responses.service });
 
     responses.service.forEach(async (service) => {
-        runTask(service, "restart");
+        runTask(service, TaskNames.RESTART);
     });
 };

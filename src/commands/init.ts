@@ -51,15 +51,13 @@ const getQuestions = async () => {
 };
 
 export const init = async () => {
-    let isCancelled = false;
-
     const responses = await prompts(await getQuestions(), {
-        onCancel: () => {
-            isCancelled = true;
+        onCancel: (_, answers) => {
+            answers.__cancelled_ = true;
         },
     });
 
-    if (isCancelled) {
+    if (responses.__cancelled_) {
         return console.log(
             chalk`
     {yellow.bold Aw man :(}

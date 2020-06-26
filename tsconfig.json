@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "downlevelIteration": true,
         "outDir": "bin",
         "strict": true,
         "allowJs": true,

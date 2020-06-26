@@ -1,13 +1,15 @@
-import prompts from "prompts";
-import { getServices } from "lib/config";
+import chalk from "chalk";
+import { prompts } from "lib/prompts";
 import { runTask } from "lib/exec";
+import { getAvailableServicesByTask } from "lib/service";
+import { TaskNames } from "types";
 
 export const login = async (serviceId?: string) => {
     if (serviceId) {
-        return runTask(serviceId, "login");
+        return runTask(serviceId, TaskNames.LOGIN);
     }
 
-    const services = await getServices();
+    const services = await getAvailableServicesByTask(TaskNames.LOGIN);
 
     const questions = [
         {
@@ -23,6 +25,12 @@ export const login = async (serviceId?: string) => {
         },
     ];
 
-    const { service } = await prompts(questions as any);
-    return runTask(service, "login");
+    const responses = await prompts(questions as any);
+
+    if (responses.__cancelled__) {
+        return console.log(chalk`
+    Well, I guess we're not doing any work today ¯\\_(ツ)_/¯`);
+    }
+
+    return runTask(responses.service, TaskNames.LOGIN);
 };

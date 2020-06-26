@@ -1,8 +1,13 @@
-import prompts from "prompts";
+import { prompts } from "lib/prompts";
 import chalk from "chalk";
-import { getService, isServiceCloned } from "lib/service";
-import { getServices, getRootDir } from "lib/config";
+import {
+    getService,
+    isServiceCloned,
+    getAvailableServicesByTask,
+} from "lib/service";
+import { getRootDir } from "lib/config";
 import { exec } from "lib/exec";
+import { TaskNames } from "types";
 
 export const cloneService = async (serviceId) => {
     if (await isServiceCloned(serviceId)) {
@@ -27,7 +32,7 @@ export const clone = async (serviceId?: string) => {
         return cloneService(serviceId);
     }
 
-    const services = await getServices();
+    const services = await getAvailableServicesByTask(TaskNames.CLONE);
 
     const questions = [
         {
@@ -46,6 +51,11 @@ export const clone = async (serviceId?: string) => {
     ];
 
     const responses = await prompts(questions as any);
+
+    if (responses.__cancelled__) {
+        return console.log(chalk`
+        Bye! You can always clone a repo by using the {yellow.bold aww yeah [service]} command`);
+    }
 
     responses.service.forEach(async (serviceId) => {
         await cloneService(serviceId);
