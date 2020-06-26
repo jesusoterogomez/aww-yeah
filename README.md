@@ -22,15 +22,15 @@ So far, you can perform the following commands:
 | `aww clone [service]`   | Clone the repository of the service                                                                                        |
 
 
-#### 🤔Pro Tip:
+#### 🤔 Pro Tip:
 
 You don't need to remember any of these commands. You can just type `aww` and follow the wizard which will let you choose the service and command to run.
 
-#### 🧠Pro-er Tip:
+#### 🧠 Pro-er Tip:
 
 There are some commands, like `run`, that can be run in parallel between multiple services, if you type `aww run` and make a selection, this selection will be remembered next time you use the same command. This means that if you always run the same stack every day, you don't need to manually select the same services every time.
 
-#### ⚛️Pro-est Tip:
+#### 🚀 Pro-est Tip:
 
 You can still run the commands directly.
 
@@ -49,6 +49,7 @@ The new version relies heavily on the use of wizards and command prompts, which 
 
 See this short example:
 
+<img width="590" src="https://user-images.githubusercontent.com/5709736/85855353-6d114280-b7b6-11ea-9b02-987741798eee.gif"/>
 
 ## Ok, I'm sold, how do I use it?
 
