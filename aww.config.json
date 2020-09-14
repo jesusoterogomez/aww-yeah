@@ -25,7 +25,7 @@
             "name": "Mock Entrypoint",
             "tasks": {
                 "clone": "git clone --recursive git@github.com:Penneo/mock-entrypoint.git",
-                "setup": "./scripts/bootstrap.sh",
+                "setup": "./project-runner/build-image.sh prod",
                 "run": "./project-runner/run.sh dev",
                 "stop": "./project-runner/run.sh dev stop",
                 "restart": "./project-runner/run.sh dev up -d --force-recreate",
@@ -37,7 +37,7 @@
             "name": "Gateway",
             "tasks": {
                 "clone": "git clone --recursive git@github.com:Penneo/gateway-service.git",
-                "setup": "./scripts/bootstrap.sh",
+                "setup": "./project-runner/build-image.sh prod",
                 "run": "./project-runner/run.sh dev",
                 "stop": "./project-runner/run.sh dev stop",
                 "restart": "./project-runner/run.sh dev up -d --force-recreate",
