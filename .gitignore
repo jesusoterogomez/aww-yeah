@@ -1,5 +1,6 @@
 # Editor files
 *.code-workspace
+.idea
 
 # Build / Dependencies
 dist
