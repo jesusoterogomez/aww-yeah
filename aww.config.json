@@ -29,11 +29,12 @@
                 "run": "./project-runner/run.sh dev",
                 "stop": "./project-runner/run.sh dev stop",
                 "restart": "./project-runner/run.sh dev up -d --force-recreate",
-                "login": "./project-runner/login.sh prod"
+                "login": "./project-runner/login.sh prod",
+                "status": "docker ps | grep {serviceId}"
             }
         },
         {
-            "repo": "gateway-service",
+            "repo": "gateway",
             "name": "Gateway",
             "tasks": {
                 "clone": "git clone --recursive git@github.com:Penneo/gateway-service.git",
@@ -41,19 +42,21 @@
                 "run": "./project-runner/run.sh dev",
                 "stop": "./project-runner/run.sh dev stop",
                 "restart": "./project-runner/run.sh dev up -d --force-recreate",
-                "login": "./project-runner/login.sh prod"
+                "login": "./project-runner/login.sh prod",
+                "status": "docker ps | grep {serviceId}"
             }
         },
         {
-            "repo": "signing-service",
+            "repo": "api-sign",
             "name": "Signing Service",
             "tasks": {
                 "clone": "git clone --recursive git@github.com:Penneo/signing-service.git",
-                "setup": "./scripts/bootstrap.sh",
+                "setup": "bootstrap.sh",
                 "run": "./project-runner/run.sh dev",
                 "stop": "./project-runner/run.sh dev stop",
                 "restart": "./project-runner/run.sh dev up -d --force-recreate",
-                "login": "./project-runner/login.sh dev"
+                "login": "./project-runner/login.sh dev",
+                "status": "docker ps | grep {serviceId}"
             }
         },
         {
@@ -61,23 +64,25 @@
             "name": "Auth Service",
             "tasks": {
                 "clone": "git clone --recursive git@github.com:Penneo/api-auth.git",
-                "setup": "./scripts/bootstrap.sh",
+                "setup": "bootstrap.sh",
                 "run": "./project-runner/run.sh dev",
                 "stop": "./project-runner/run.sh dev stop",
                 "restart": "./project-runner/run.sh dev up -d --force-recreate",
-                "login": "./project-runner/login.sh dev"
+                "login": "./project-runner/login.sh dev",
+                "status": "docker ps | grep {serviceId}"
             }
         },
         {
-            "repo": "forms",
+            "repo": "api-form",
             "name": "Forms Service",
             "tasks": {
                 "clone": "git clone --recursive git@github.com:Penneo/forms.git",
-                "setup": "./scripts/bootstrap.sh",
+                "setup": "bootstrap.sh",
                 "run": "./project-runner/run.sh dev",
                 "stop": "./project-runner/run.sh dev stop",
                 "restart": "./project-runner/run.sh dev up -d --force-recreate",
-                "login": "./project-runner/login.sh dev"
+                "login": "./project-runner/login.sh dev",
+                "status": "docker ps | grep {serviceId}"
             }
         }
     ]

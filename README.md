@@ -11,15 +11,16 @@ At the moment, the functionality is certainly limited, but that doesn't mean it'
 
 So far, you can perform the following commands:
 
-| Command               | Description                                                                                                                |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `aww help`              | Displays the documentation                                                                                                 |
-| `aww init`              | Starts the wizard to set up this tool. (Must be done before running any task)                                              |
-| `aww run [service]`     | Run the docker container for a service. |
-| `aww stop [service]`    | Stops the docker container of a service                                                                                    |
-| `aww restart [service]` | Restart the docker container of a service                                                                                  |
-| `aww login [service]`   | Log in to the docker container of a service. The service must be already running                                           |
-| `aww clone [service]`   | Clone the repository of the service                                                                                        |
+| Command                 | Description                                                                                                                |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `aww help`              | Displays the documentation.                                                                                                |
+| `aww init`              | Starts the wizard to set up this tool. (Must be done before running any task).                                             |
+| `aww run [service]`     | Run the docker container for a service.                                                                                    |
+| `aww stop [service]`    | Stops the docker container of a service.                                                                                   |
+| `aww restart [service]` | Restart the docker container of a service.                                                                                 |
+| `aww login [service]`   | Log in to the docker container of a service. The service must be already running.                                          |
+| `aww clone [service]`   | Clone the repository of the service.                                                                                       |
+| `aww status [service]`  | Show the service status (on/off).                                                                                          |
 
 
 #### 🤔 Pro Tip:

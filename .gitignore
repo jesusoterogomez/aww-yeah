@@ -3,6 +3,7 @@
 .idea
 
 # Build / Dependencies
+bin
 dist
 node_modules
 
