@@ -1,8 +1,11 @@
 import shell from "shelljs";
 import childProcess from "child_process";
-import { getRootDir } from "./config";
-import { getService } from "./service";
+import {TaskNames} from "../types";
+import {getRootDir} from "./config";
+import {getService} from "./service";
 import chalk from "chalk";
+const shelljs = require("shelljs");
+const colors = require("colors");
 
 export const exec = (command, path) => {
     shell.exec(command, {
@@ -18,6 +21,10 @@ export const execSync = (command, path) => {
 };
 
 export const runTask = async (serviceId, taskName) => {
+    if (taskName === TaskNames.STATUS) {
+        return await runStatus(serviceId, taskName);
+    }
+
     const rootDir = await getRootDir();
 
     if (!rootDir) {
@@ -44,6 +51,21 @@ export const runTask = async (serviceId, taskName) => {
     // @see: https://github.com/shelljs/shelljs/wiki/FAQ#running-interactive-programs-with-exec
     return childProcess.spawn(command, args, {
         cwd: path,
-        stdio: "inherit",
+        stdio: "inherit"
     });
+};
+
+const runStatus = async (serviceId, taskName) => {
+    const serviceData = await getService(serviceId);
+
+    const task = (serviceData?.tasks[taskName] as string).replace("{serviceId}", serviceId);
+
+    const output = shelljs.exec(task, {silent: true});
+
+    console.log('%s %s',
+        (output.code === 0 ? colors.green("\u2713") : colors.red("\u2718")),
+        serviceId
+    );
+
+    return output;
 };

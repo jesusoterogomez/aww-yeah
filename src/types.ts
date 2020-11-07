@@ -14,7 +14,8 @@ export enum TaskNames {
     RUN = "run",
     SETUP = "setup",
     CLONE = "clone",
-    STOP = "stop"
+    STOP = "stop",
+    STATUS = "status"
 }
 
 export type Service = {
