@@ -79,6 +79,18 @@
                 "restart": "./project-runner/run.sh dev up -d --force-recreate",
                 "login": "./project-runner/login.sh dev"
             }
+        },
+        {
+            "repo": "silverfin-adaptor",
+            "name": "Silverfin Adaptor",
+            "tasks": {
+                "clone": "git clone --recursive git@github.com:Penneo/silverfin-adaptor.git",
+                "setup": "./scripts/bootstrap.sh",
+                "run": "./project-runner/run.sh dev",
+                "stop": "./project-runner/run.sh dev stop",
+                "restart": "./project-runner/run.sh dev up -d --force-recreate",
+                "login": "./project-runner/login.sh dev"
+            }
         }
     ]
 }
